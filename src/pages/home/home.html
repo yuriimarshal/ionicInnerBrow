@@ -14,7 +14,7 @@
 
 <ion-content padding>
   <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
-  <iframe src="https://www.google.com.ua" height="100%" width="100%" frameborder="0"></iframe>
+  <iframe [src]="sanitized" height="100%" width="100%" frameborder="0"></iframe>
   <ion-list>
     <ion-item *ngFor="let domain of domainsList">
       <h2> {{ domain.originalDomain }} </h2>

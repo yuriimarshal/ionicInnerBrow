@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {IonicPage, NavController, NavParams} from 'ionic-angular';
 import firebase from 'firebase';
-
+import { DomSanitizer } from '@angular/platform-browser';
 import {InAppBrowser} from '@ionic-native/in-app-browser';
 
 @IonicPage()
@@ -11,20 +11,21 @@ import {InAppBrowser} from '@ionic-native/in-app-browser';
 })
 export class HomePage implements OnInit {
 
+  public sanitized;
   public domainsList: Array<any>;
   public loadedDomainsList: Array<any>;
   public domainsRef: firebase.database.Reference;
 
-  constructor(private iab: InAppBrowser, public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public sanitizer: DomSanitizer, private iab: InAppBrowser, public navCtrl: NavController, public navParams: NavParams) {
     this.domainsRef = firebase.database().ref('/domains');
 
     // const browser = this.iab.create('https://ionicframework.com/');
 
-    this.domainsRef.push({
-      originalDomain: "lamoda.ua",
+    this.domainsRef.set({"some": {
+      originalDomain: "http://lamoda.ua/",
       subid: "jdfef8fjf8efwefewh7hf7fhf7wef7hw",
       marketing_text: "вам доступен cashback 5%"
-    });
+    }});
 
     this.domainsRef.on('value', domainsList => {
       let domains = [];
@@ -37,6 +38,8 @@ export class HomePage implements OnInit {
       this.domainsList = domains;
       this.loadedDomainsList = domains;
     });
+
+    this.sanitized = sanitizer.bypassSecurityTrustResourceUrl(this.domainsList[0].originalDomain);
   }
 
   ngOnInit() {
