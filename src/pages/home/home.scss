@@ -1,3 +1,31 @@
 page-home {
+  .google-media-search {
+    .cse input.gsc-input, input.gsc-input {
+      //background-image: none !important;
+    }
+    .gcsc-branding, .gsc-orderby {
+      display: none;
+    }
+    .gsc-input-box {
+      input::placeholder {
 
+      }
+    }
+    .gsc-search-button {
+      //display: none;
+    }
+  }
+  .frame-label {
+    border: 1px solid grey;
+    padding: 10px 5px;
+    text-align: center;
+  }
+  iframe {
+    border: 1px solid grey;
+    display: none;
+  }
+
+  .base-frame, #close-frame {
+    display: none;
+  }
 }
