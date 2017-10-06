@@ -122,6 +122,10 @@ export class HomePage implements OnInit {
         let closeButton = document.body.querySelector("#close-frame") as HTMLButtonElement;
         closeButton.style.display = "block";
         baseFrame.src = baseRef;
+        baseFrame.onload = function() {
+          baseFrame.style.background = '';
+        };
+
         return false;
       }
     };

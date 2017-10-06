@@ -19,9 +19,11 @@
   <!--It's a frame. Any search system isn't available.-->
   <!--</div>-->
   <button id="close-frame" ion-button (click)="closeFrame()">X</button>
+  <!--<img src="" alt="Error: Refused to display resource." class="error_frame" />-->
   <iframe sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
           class="base-frame" height="100%"
-          width="100%" frameborder="0"></iframe>
+          width="100%" frameborder="0">
+  </iframe>
   <!--<ion-list>-->
   <!--<ion-item *ngFor="let domain of domainsList">-->
   <!--<h2> {{ domain.originalDomain }} </h2>-->
